@@ -9,13 +9,14 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var app = express();
 
+var cors = require('cors');
 var flash = require('connect-flash');
 var session = require('express-session')
 var mysqlStore = require('express-mysql-session')(session);
 var mysql = require('mysql')
 var crypto = require('crypto');
 var passport = require('passport');
-
+require("dotenv").config({ path: "lib/settings.env" })
 
 // 데이터베이스 설정
 const options = {
@@ -46,7 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    origin: "http://localhost:3003",
+    origin: "http://localhost:3005",
     credentials: true,
   })
 );
